@@ -13,7 +13,7 @@
     <div class="md:w-1/2 px-10">
       <form 
         enctype="multipart/form-data"
-        action="{{ route('posts.store') }}" 
+        action="{{ route('imagenes.store') }}" 
         id="dropzone" 
         class="dropzone border-dashed border-2 w-full h-96 rounded flex flex-col justify-center items-center">
         @csrf
@@ -42,7 +42,9 @@
             class="border p-3 w-full rounded-lg @error('name') border-red-500 @enderror" />
 
             @error('titulo')
-              <p class="text-red-500 text-center text-sm my-2">{{ $message }}</p>
+              <p class="text-white text-center text-sm my-3 border-l-4 border-l-red-800 p-1 rounded-r-lg bg-red-500">
+                {{ $message }}
+              </p>
             @enderror
         </div>
 
@@ -58,17 +60,23 @@
             >{{ old('descripcion') }}</textarea>
 
             @error('descripcion')
-              <p class="text-red-500 text-center text-sm my-2">{{ $message }}</p>
+              <p class="text-white text-center text-sm my-3 border-l-4 border-l-red-800 p-1 rounded-r-lg bg-red-500">
+                {{ $message }}
+              </p>
             @enderror
         </div>
 
         <div class="mb-5">
           <input 
             type="hidden"
-            name="imagen" />
+            name="imagen" 
+            value="{{ old('imagen') }}"
+          />
 
           @error('imagen')
-            <p class="text-red-500 text-center text-sm my-2">{{ $message }}</p>
+            <p class="text-white text-center text-sm my-3 border-l-4 border-l-red-800 p-1 rounded-r-lg bg-red-500">
+              {{ $message }}
+            </p>
           @enderror
         </div>
 
