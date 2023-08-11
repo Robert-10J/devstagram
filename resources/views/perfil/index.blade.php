@@ -1,3 +1,8 @@
+{{-- 
+  * Tene opción de cambiar contraseña
+  * Solicitar contraseña al momento de realizar los cambios
+--}}
+
 @extends('layouts.app')
 
 @section('titulo')
