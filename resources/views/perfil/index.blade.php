@@ -12,7 +12,7 @@
 @section('contenido')
 
   <div class="md:flex md:justify-center">
-    <div class="md:w-1/2 bg-white shadow p-6">
+    <div class="md:w-1/2 bg-gray-800 shadow p-6 rounded">
       <form action="{{ route('perfil.store') }}" enctype="multipart/form-data" method="POST" class="mt-10 md:mt-0">
         @csrf
         <div class="mb-5">
@@ -25,9 +25,26 @@
             name="username"
             value="{{ auth()->user()->username }}"
             placeholder="Username"
-            class="border p-3 w-full rounded-lg @error('name') border-red-500 @enderror" />
+            class="bg-gray-700 p-3 w-full rounded-lg @error('name') border-red-500 @enderror" />
 
             @error('username')
+              <p class="text-white text-center text-sm my-3 border-l-4 border-l-red-800 p-1 rounded-r-lg bg-red-500">
+                {{ $message }}
+              </p>
+            @enderror
+        </div>
+        <div class="mb-5">
+          <label for="password" class="mb-2 block uppercase text-gray-500 font-bold">
+            Password: 
+          </label>
+          <input 
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Ingresa tu Nuevo Password"
+            class="bg-gray-700 p-3 w-full rounded-lg @error('name') border-red-500 @enderror" />
+
+            @error('password')
               <p class="text-white text-center text-sm my-3 border-l-4 border-l-red-800 p-1 rounded-r-lg bg-red-500">
                 {{ $message }}
               </p>
@@ -41,7 +58,7 @@
             type="file"
             id="imagen"
             name="imagen"
-            class="border p-3 w-full rounded-lg @error('name') border-red-500 @enderror" 
+            class="p-3 w-full rounded-lg @error('name') border-red-500 @enderror" 
             {{-- accept=".jpg .jpeg .png" --}}
           />
         </div>
@@ -54,5 +71,4 @@
       </form>
     </div>
   </div>
-  
 @endsection

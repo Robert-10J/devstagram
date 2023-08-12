@@ -25,6 +25,7 @@ class PerfilController extends Controller
 
         $this->validate($request, [
             'username' => ['required', 'unique:users,username,'.auth()->user()->id, 'min:3', 'max:15', 'not_in:twitter,editar-perfil'],
+            // 'password' => 'min:6'
         ]);
 
         if ($request->imagen) {
@@ -35,12 +36,13 @@ class PerfilController extends Controller
             $imgServidor = Image::make($img);
             $imgServidor->fit(1000, 1000);
 
-            $imgPath = public_path('perfiles') . '/' . $nombreImagen;
+            $imgPath = public_path('perfiles') . '/' . $nombreImagen; 
             $imgServidor->save($imgPath);
         }
 
         $usuario = User::find(auth()->user()->id);
         $usuario->username = $request->username;
+        // $usuario->password = $request->password ?? auth()->user()->password;
         $usuario->imagen = $nombreImagen ?? auth()->user()->imagen ?? null;
         $usuario->save();
 

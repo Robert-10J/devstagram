@@ -9,18 +9,18 @@
 @endpush
 
 @section('contenido')
-  <div class="flex md:items-center">
+  <div class="flex md:items-center px-5">
     <div class="md:w-1/2 px-10">
       <form 
         enctype="multipart/form-data"
         action="{{ route('imagenes.store') }}" 
         id="dropzone" 
-        class="dropzone border-dashed border-2 w-full h-96 rounded flex flex-col justify-center items-center">
+        class="dropzone border-dashed border-2 w-full h-96 rounded flex flex-col justify-center items-center bg-gray-700">
         @csrf
       </form>
     </div>
 
-    <div class="md:w-1/2 p-10 bg-white rounded-lg shadow-xl mt-10 md:mt-0">
+    <div class="md:w-1/2 p-10 bg-gray-900 rounded-lg shadow-xl mt-10 md:mt-0">
       <form method="POST" action="{{ route('posts.store') }}">
         @if (session('mensaje'))
           <p class="text-red-500 text-center text-sm my-2">
@@ -39,7 +39,7 @@
             name="titulo"
             value="{{ old('titulo') }}"
             placeholder="Título de la imagen"
-            class="border p-3 w-full rounded-lg @error('name') border-red-500 @enderror" />
+            class="bg-gray-700 p-3 w-full rounded-lg @error('name') border-red-500 @enderror" />
 
             @error('titulo')
               <p class="text-white text-center text-sm my-3 border-l-4 border-l-red-800 p-1 rounded-r-lg bg-red-500">
@@ -56,7 +56,7 @@
             name="descripcion" 
             id="descripcion"
             placeholder="Descripción de la publicación"
-            class="border p-3 w-full rounded-lg @error('name') border-red-500 @enderror"
+            class="bg-gray-700 p-3 w-full rounded-lg @error('name') border-red-500 @enderror"
             >{{ old('descripcion') }}</textarea>
 
             @error('descripcion')

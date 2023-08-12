@@ -10,7 +10,7 @@
       <img src="{{ asset('img/login.jpg') }}" alt="Imagen registro de usuarios">
     </div>
 
-    <div class="md:w-4/12 bg-white p-6 r rounded-lg shadow-xl">
+    <div class="md:w-4/12 bg-gray-800 p-6 r rounded-lg shadow-xl">
       <form method="POST" action="{{ route('login') }}">
         @if (session('mensaje'))
           <p class="text-red-500 text-center text-sm my-2">
@@ -29,7 +29,7 @@
             name="email"
             value="{{ old('email') }}"
             placeholder="Tu Email"
-            class="border p-3 w-full rounded-lg">
+            class="bg-gray-700 p-3 w-full rounded-lg">
         </div>
         @error('email')
           <p class="text-red-500 text-center text-sm my-2">{{ $message }}</p>
@@ -44,7 +44,7 @@
             id="password"
             name="password"
             placeholder="Password de Registro"
-            class="border p-3 w-full rounded-lg">
+            class="bg-gray-700 p-3 w-full rounded-lg">
         </div>
         @error('password')
         <p class="text-red-500 text-center text-sm my-2">{{ $message }}</p>
