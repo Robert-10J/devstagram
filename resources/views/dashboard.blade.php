@@ -13,7 +13,6 @@
       
       <div class="md:w-8/12 lg:w-6/12 px-5">
         <p class="font-bold text-gray-700 text-2xl">{{ auth()->user()->username }}</p>
-        <p>{{ dd(auth()->user()) }}</p>
       </div>
     </div>
   </div>

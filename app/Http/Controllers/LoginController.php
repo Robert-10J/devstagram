@@ -19,9 +19,11 @@ class LoginController extends Controller
             'password' => 'required',
         ]);
 
-        $isCorrectUser = Auth::attempt($request->only('email', 'password'));
+        $activeSession = $request->remember;
+        $credentialsUser = $request->only('email', 'password');
+        $initSession = Auth::attempt($credentialsUser, $activeSession);
 
-        if (!$isCorrectUser) {
+        if (!$initSession) {
             return back()->with('message', 'Correo o contraseña incorrectos');
         }
 

@@ -16,7 +16,7 @@ Route::get('/crear-cuenta', [RegisterController::class, 'index'])->name('registe
 Route::post('/crear-cuenta', [RegisterController::class, 'store']);
 Route::get('/iniciar-sesion', [LoginController::class, 'index'])->name('login');
 Route::post('/iniciar-sesion', [LoginController::class, 'store']);
-Route::get('/cerrar-sesion', [LogoutController::class, 'store'])->name('logout');
+Route::post('/cerrar-sesion', [LogoutController::class, 'store'])->name('logout');
 
 
 Route::get('/muro', [PostController::class, 'index'])->name('post.index')->middleware('auth');
