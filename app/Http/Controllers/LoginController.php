@@ -15,7 +15,7 @@ class LoginController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'email' => 'required|email',
+            'email'    => 'required|email',
             'password' => 'required',
         ]);
 
@@ -27,6 +27,8 @@ class LoginController extends Controller
             return back()->with('message', 'Correo o contraseña incorrectos');
         }
 
-        return redirect()->route('post.index');
+        return redirect()->route('post.index', [
+            'user' => Auth::user()->username
+        ]);
     }
 }

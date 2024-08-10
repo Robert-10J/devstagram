@@ -19,4 +19,4 @@ Route::post('/iniciar-sesion', [LoginController::class, 'store']);
 Route::post('/cerrar-sesion', [LogoutController::class, 'store'])->name('logout');
 
 
-Route::get('/muro', [PostController::class, 'index'])->name('post.index')->middleware('auth');
+Route::get('/{user:username}', [PostController::class, 'index'])->name('post.index')->middleware('auth');  // apply route model binding
