@@ -22,7 +22,7 @@
     </div>
     
     <div class="md:w-1/2 px-10 bg-white rounded-lg shadow-xl p-10 mt-10 md:mt-0">
-      <form action="{{ route('post.create') }}" method="POST" novalidate>
+      <form action="{{ route('post.store') }}" method="POST" novalidate>
         @csrf
         <div class="mb-5">
           <label 
@@ -52,8 +52,15 @@
             name="description""
             placeholder="Descripción de la publicación"
             class="border p-3 w-full rounded-lg @error('') border-red-500 @enderror"
-          ></textarea>
-          @error('description"')
+          >{{ old('description') }}</textarea>
+          @error('description')
+            <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{ $message }}</p>
+          @enderror
+        </div>
+
+        <div class="mb-5">
+          <input type="hidden" name="hidden" />
+          @error('image')
             <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{ $message }}</p>
           @enderror
         </div>
