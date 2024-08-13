@@ -6,6 +6,7 @@
         @stack('styles')
         <title>DevStagram - @yield('title')</title>
         @vite('resources/css/app.css')
+        @vite('resources/js/app.js')
     </head>
     <body class="bg-gray-100">
         <header class="p-5 border-b bg-white shadow-md">

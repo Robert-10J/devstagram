@@ -12,5 +12,13 @@ const dropzone = new Dropzone('#dropzone', {
 });
 
 dropzone.on('sending', function(file, xhr, formData) {
-    console.log(file);
+  console.log(formData);
+});
+
+dropzone.on('success', function(file, response) {
+  console.log(response);
+});
+
+dropzone.on('error', function(file, message) {
+  console.log(message);
 });
