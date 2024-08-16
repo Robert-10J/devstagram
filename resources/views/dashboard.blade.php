@@ -1,9 +1,5 @@
 @extends('layouts.layout')
 
-@section('title')
-  Perfil {{ $user->username }}
-@endsection
-
 @section('content')
   <div class="flex justify-center">
     <div class="w-full md:w-8/12 lg:w-6/12 flex flex-col md:flex-row">
@@ -34,7 +30,7 @@
       <div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 mt-5">
         @foreach ($posts as $post)
           <div>
-            <a href="">
+            <a href="{{ route('posts.show', ['posts' => $post, 'user' => $user]) }}">
               <img src="{{ asset('uploads') . '/' . $post->image }}" alt="Imagen del post {{ $post->title }}">
             </a>
           </div>

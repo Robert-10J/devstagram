@@ -20,7 +20,8 @@ Route::post('/iniciar-sesion', [LoginController::class, 'store']);
 Route::post('/cerrar-sesion', [LogoutController::class, 'store'])->name('logout');
 
 Route::get('/{user:username}', [PostController::class, 'index'])->name('post.index')->middleware('auth');  // apply route model binding
-Route::get('/post/create', [PostController::class, 'create'])->name('post.create');
-Route::post('/posts', [PostController::class, 'store'])->name('post.store');
+Route::get('/post/create', [PostController::class, 'create'])->name('post.create')->middleware('auth');
+Route::post('/posts', [PostController::class, 'store'])->name('post.store')->middleware('auth');
+Route::get('/{user:username}/posts/{posts}', [PostController::class, 'show'])->name(('posts.show'));
 
-Route::post('/upload-images', [ImageController::class, 'store'])->name('images.store');
+Route::post('/upload-images', [ImageController::class, 'store'])->name('images.store')->middleware('auth');
