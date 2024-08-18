@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RegisterRequest;
 use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -15,19 +16,13 @@ class RegisterController extends Controller
         return view('auth.register'); 
     }
 
-    public function store(Request $request)
+    public function store(RegisterRequest $request)
     {
         /* Se modifica el request para evitar nombres de usuario duplicados */
         $request->request->add(['username' => Str::slug($request->username)]);
+        $request->validated();
 
-        $request->validate([
-            'name'     => ['required', 'string', 'max:25', 'min:4'],
-            'username' => ['required', 'string', 'max:20', 'unique:users'],
-            'email'    => ['required', 'string', 'email', 'max:30', 'unique:users'],
-            'password' => ['required','min:6', 'confirmed'],
-        ]);
-
-        User::create([
+        $user = User::create([
             'name'     => $request->name,
             'username' => $request->username,
             'email'    => $request->email,
@@ -36,6 +31,8 @@ class RegisterController extends Controller
 
         Auth::attempt($request->only('email', 'password'));
         
-        return redirect()->route('post.index');
+        return redirect()->route('post.index', [
+            'user' => $user
+        ]);
     }
 }

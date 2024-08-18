@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
@@ -24,4 +25,8 @@ Route::get('/post/create', [PostController::class, 'create'])->name('post.create
 Route::post('/posts', [PostController::class, 'store'])->name('post.store')->middleware('auth');
 Route::get('/{user:username}/posts/{posts}', [PostController::class, 'show'])->name(('posts.show'));
 
+Route::post('/{user:username}/posts/{posts}', [CommentController::class, 'store'])->name('comments.store');
+
+
 Route::post('/upload-images', [ImageController::class, 'store'])->name('images.store')->middleware('auth');
+

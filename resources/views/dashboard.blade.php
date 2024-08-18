@@ -41,7 +41,7 @@
         {{ $posts->links() }}
       </div>
     @else
-      <p class="text-2xl font-bold text-center text-gray-600 uppercase">Aún no tienes publicaciones</p>
+      <p class="text-xl font-bold text-center text-gray-600 uppercase my-10">Aún no tienes publicaciones</p>
     @endif
   </section>
 @endsection
