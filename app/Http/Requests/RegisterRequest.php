@@ -31,4 +31,13 @@ class RegisterRequest extends FormRequest
             ],
         ];
     }
+
+    protected function failedValidation(\Illuminate\Contracts\Validation\Validator $validator)
+{
+    $response = response()->json([
+        'errors' => $validator->errors()
+    ], 422);
+
+    throw new \Illuminate\Validation\ValidationException($validator, $response);
+}
 }

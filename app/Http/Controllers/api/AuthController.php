@@ -10,7 +10,7 @@ class AuthController extends Controller
 {
     public function register(RegisterRequest $request)
     {
-        $request->rules();
+        $request->validated();
 
         return response()->json([
             'data' => 'hii'
