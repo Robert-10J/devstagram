@@ -32,12 +32,24 @@ class RegisterRequest extends FormRequest
         ];
     }
 
-    protected function failedValidation(\Illuminate\Contracts\Validation\Validator $validator)
-{
-    $response = response()->json([
-        'errors' => $validator->errors()
-    ], 422);
+    public function messages()
+    {
+        return [
+            'name' => 'El nombre es obligatorio',
+            'email.required' => 'El email es obligatorio',
+            'email.email' => 'El email no es válido',
+            'email.unique' => 'El email ya está registrado',
+            'password' => 'El password debe contener al menos 8 caracteres, un símbolo y un número',
+            'password.confirmed' => 'Las contraseñas no coinciden' 
+        ];
+    }
 
-    throw new \Illuminate\Validation\ValidationException($validator, $response);
-}
+    protected function failedValidation(\Illuminate\Contracts\Validation\Validator $validator)
+    {
+        $response = response()->json([
+            'errors' => $validator->errors()
+        ], 422);
+
+        throw new \Illuminate\Validation\ValidationException($validator, $response);
+    }
 }
